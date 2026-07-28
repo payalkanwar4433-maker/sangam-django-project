@@ -63,6 +63,9 @@ def contactdetail(request):
 def service(request):
     return render(request, "serves.html")
 
+def price(request):
+    return render(request, "price.html")
+
 def stock_price(request, symbol):
     try:
         if not symbol.endswith(".NS"):
