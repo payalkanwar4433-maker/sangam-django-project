@@ -29,3 +29,8 @@ def track_shipment(request, tracking_id):
     shipment = get_object_or_404(Shipment, tracking_id=tracking_id)
     serializer = ShipmentSerializer(shipment)
     return Response(serializer.data)
+# aiapp/views.py
+from django.shortcuts import render
+
+def tracking(request):
+    return render(request, 'tracking.html')

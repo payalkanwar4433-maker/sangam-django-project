@@ -1,122 +1,145 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Glass Grid Stock Cards</title>
+    <meta charset="UTF-8">
+    <title>Stock Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<style>
-    body {
-        margin: 0;
-        padding: 30px;
-        font-family: Poppins, sans-serif;
-        background: linear-gradient(135deg, #0a0f24, #151d35);
-        color: #fff;
-        display: flex;
-        justify-content: center;
-    }
+    <style>
+        body {
+            margin: 0;
+            min-height: 100vh;
+            background: radial-gradient(circle at top, #0f172a, #020617);
+            font-family: Arial, sans-serif;
+            color: #fff;
+        }
 
-    .grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
-        gap: 22px;
-        max-width: 1100px;
-        width: 100%;
-    }
+        .container {
+            padding: 40px;
+        }
 
-    .card {
-        backdrop-filter: blur(14px);
-        background: rgba(255, 255, 255, 0.08);
-        border-radius: 18px;
-        padding: 18px;
-        border: 1px solid rgba(255,255,255,0.06);
-        box-shadow: 0 8px 26px rgba(0,0,0,0.3);
-        transition: 0.3s ease;
-    }
-    .card:hover {
-        transform: translateY(-6px);
-        box-shadow: 0 12px 30px rgba(0,0,0,0.4);
-    }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 24px;
+        }
 
-    .logo {
-        width: 55px;
-        height: 55px;
-        border-radius: 14px;
-        overflow: hidden;
-        margin: auto;
-        margin-bottom: 12px;
-        border: 1px solid rgba(255,255,255,0.1);
-    }
+        .card {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(14px);
+            border-radius: 18px;
+            padding: 24px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+            transition: transform 0.3s;
+        }
 
-    .logo img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
+        .card:hover {
+            transform: translateY(-6px);
+        }
 
-    .symbol {
-        font-size: 18px;
-        font-weight: 700;
-        letter-spacing: 0.5px;
-    }
+        .symbol {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 12px;
+        }
 
-    .price {
-        font-size: 26px;
-        margin-top: 8px;
-        color: #00eaff;
-        font-weight: 800;
-    }
+        .price {
+            font-size: 28px;
+            font-weight: bold;
+            color: #22d3ee;
+        }
 
-    .small {
-        font-size: 12px;
-        color: #c7d3ec;
-        margin-top: 4px;
-    }
-
-</style>
-
+        .market {
+            font-size: 12px;
+            opacity: 0.7;
+            margin-top: 6px;
+        }
+    </style>
 </head>
 <body>
 
-<div class="grid" id="stockGrid"></div>
+<div class="container">
+    <div class="grid">
+
+        <div class="card">
+            <div class="symbol">RELIANCE</div>
+            <div class="price" id="RELIANCE">Loading…</div>
+            <div class="market">NSE Market</div>
+        </div>
+
+        <div class="card">
+            <div class="symbol">TCS</div>
+            <div class="price" id="TCS">Loading…</div>
+            <div class="market">NSE Market</div>
+        </div>
+
+        <div class="card">
+            <div class="symbol">HDFCBANK</div>
+            <div class="price" id="HDFCBANK">Loading…</div>
+            <div class="market">NSE Market</div>
+        </div>
+
+        <div class="card">
+            <div class="symbol">INFY</div>
+            <div class="price" id="INFY">Loading…</div>
+            <div class="market">NSE Market</div>
+        </div>
+
+        <div class="card">
+            <div class="symbol">ICICIBANK</div>
+            <div class="price" id="ICICIBANK">Loading…</div>
+            <div class="market">NSE Market</div>
+        </div>
+
+        <div class="card">
+            <div class="symbol">SBIN</div>
+            <div class="price" id="SBIN">Loading…</div>
+            <div class="market">NSE Market</div>
+        </div>
+
+        <div class="card">
+            <div class="symbol">ITC</div>
+            <div class="price" id="ITC">Loading…</div>
+            <div class="market">NSE Market</div>
+        </div>
+
+        <div class="card">
+            <div class="symbol">WIPRO</div>
+            <div class="price" id="WIPRO">Loading…</div>
+            <div class="market">NSE Market</div>
+        </div>
+
+    </div>
+</div>
 
 <script>
+    const stocks = [
+        "RELIANCE",
+        "TCS",
+        "HDFCBANK",
+        "INFY",
+        "ICICIBANK",
+        "SBIN",
+        "ITC",
+        "WIPRO"
+    ];
 
-const symbols = ["RELIANCE", "TCS", "HDFCBANK", "INFY", "ICICIBANK", "SBIN", "ITC", "WIPRO"];
-
-function createCard(symbol, price = null) {
-    return `
-        <div class="card">
-            <div class="logo">
-                <img src="https://logo.clearbit.com/${symbol.toLowerCase()}.com"
-                     onerror="this.src='https://via.placeholder.com/60'" />
-            </div>
-            <div class="symbol">${symbol}</div>
-            <div class="price">${price ? "₹" + price : "Loading..."}</div>
-            <div class="small">NSE Market</div>
-        </div>
-    `;
-}
-
-// initial loading cards
-const grid = document.getElementById("stockGrid");
-symbols.forEach(sym => grid.innerHTML += createCard(sym));
-
-// API fetch
-symbols.forEach(sym => {
-    fetch(`/stock/${sym}/`)
-        .then(res => res.json())
-        .then(data => {
-            if (data.price) {
-                const cards = document.querySelectorAll(".card");
-                cards.forEach(card => {
-                    if (card.querySelector(".symbol").textContent === sym) {
-                        card.querySelector(".price").textContent = "₹" + data.price.toFixed(2);
-                    }
+    function loadPrices() {
+        stocks.forEach(symbol => {
+            fetch(`/stock/${symbol}/`)
+                .then(res => res.json())
+                .then(data => {
+                    document.getElementById(symbol).innerText =
+                        "₹" + Number(data.price).toFixed(2);
+                })
+                .catch(() => {
+                    document.getElementById(symbol).innerText = "Error";
                 });
-            }
         });
-});
+    }
+
+    loadPrices();
 </script>
 
 </body>
