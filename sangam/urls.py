@@ -14,6 +14,7 @@ urlpatterns = [
     path('service/', views.service, name='service'),
     path('stock/<str:symbol>/', stock_price, name='stock_price'),
     path('api/', include('tracking.urls')),
+    path('price/', views.price, name='price'),
 ]
 
 if settings.DEBUG:
